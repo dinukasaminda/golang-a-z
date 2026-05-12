@@ -480,6 +480,8 @@ Move from syntax into idiomatic Go.
 
 Concurrency, performance, and the deeper tooling around Go.
 
+Markdown-only companion guides for this part live in [`03-go-advanced/go-advanced.md`](03-go-advanced/go-advanced.md). Read each guide, then create your own `.go` files from the snippets as practice.
+
 - Goroutines and the scheduler model.
 - Channels, buffered vs unbuffered.
 - `select`, timeouts, and cancellation.
