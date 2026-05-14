@@ -28,16 +28,23 @@ func main() {
 	jobs := make(chan int)
 	results := make(chan int)
 
-	for w := 1; w <= 3; w++ {
-		go worker(w, jobs, results)
+	// we have to set a reciver for the results channel before starting sending data
+	// otherwise worker will be blocked -> result to deadlock
+	go func() {
+		for i := 0; i < 6; i++ {
+			fmt.Println(<-results)
+		}
+	}()
+
+	for i := 0; i <= 3; i++ {
+		go worker(i, jobs, results)
 	}
-	for j := 1; j <= 5; j++ {
+
+	for j := 0; j <= 5; j++ {
 		jobs <- j
 	}
+
 	close(jobs)
-	for i := 0; i < 5; i++ {
-		fmt.Println(<-results)
-	}
 }
 ```
 
